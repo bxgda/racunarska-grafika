@@ -68,7 +68,7 @@ protected:
 public:
 	afx_msg void OnKeyDown(UINT nChar, UINT nRepCnt, UINT nFlags);
 	
-	// potrebno takodje za antiflicker
+	// potrebno takodje za antiflicker kako stvarno ne bi treperelo
 	afx_msg BOOL OnEraseBkgnd(CDC* pDC);
 };
 
@@ -76,4 +76,5 @@ public:
 inline Cgdi2017Doc* Cgdi2017View::GetDocument() const
    { return reinterpret_cast<Cgdi2017Doc*>(m_pDocument); }
 #endif
+
 
