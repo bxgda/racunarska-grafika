@@ -314,26 +314,7 @@ void Cgdijun2025View::DrawFerrisWheel(CDC* pDC, int r, int d, int n, COLORREF cl
 
 	pDC->SetWorldTransform(&oldXf);
 
-	CFont textFont;
-	textFont.CreateFont(
-		-f, 0, 0, 0, FW_NORMAL, FALSE, FALSE, 0,
-		DEFAULT_CHARSET, OUT_DEFAULT_PRECIS, CLIP_DEFAULT_PRECIS,
-		DEFAULT_QUALITY, DEFAULT_PITCH | FF_SWISS, _T("Arial")
-	);
-
-	CFont* oldFont = pDC->SelectObject(&textFont);
-	int oldBkMode = pDC->SetBkMode(TRANSPARENT);
-	COLORREF oldTextColor = pDC->SetTextColor(clr);
-
-	const float radius = 1.8f * r;
-	const int len = str.GetLength();
-
-	CSize totalSize = pDC->GetTextExtent(str);
-	float arcLen = static_cast<float>(totalSize.cx);
-	float angleSpan = arcLen / radius; // radians
-	float startAngle = -3.14159265f / 2.0f - angleSpan / 2.0f;
-
-	// ko voli nek ispise tekst
+	// ko voli nek ispise tekst ja ne mogu vise da gledam u ovo
 }
 
 Cgdijun2025Doc* Cgdijun2025View::GetDocument() const // non-debug version is inline
