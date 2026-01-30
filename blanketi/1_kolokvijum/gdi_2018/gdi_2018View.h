@@ -44,14 +44,13 @@ protected:
 
 	//moje funkcije i promenljive  ------------------------------------------
 
-	// mnogo lose su dali koordinate za pomeraje pa je moralo da se nabada
-
 protected:
 	DImage* bager;
 	DImage* arm1;
 	DImage* arm2;
 	DImage* pozadina;
 	HENHMETAFILE viljuska;
+	CRect viljuskaRect;
 
 	float ugao1 = -90.0f;
 	float ugao2 = -90.0f;

@@ -47,6 +47,15 @@ Cgdi2018View::Cgdi2018View() noexcept
 	pozadina->Load(CString("pozadina.png"));
 	viljuska = GetEnhMetaFile(CString("viljuska.emf"));
 
+	ENHMETAHEADER hdr;
+	GetEnhMetaFileHeader(viljuska, sizeof(hdr), &hdr);
+	viljuskaRect = CRect(
+		hdr.rclBounds.left,
+		hdr.rclBounds.top,
+		hdr.rclBounds.right,
+		hdr.rclBounds.bottom
+	);
+
 }
 
 Cgdi2018View::~Cgdi2018View()
@@ -246,13 +255,13 @@ void Cgdi2018View::DrawArm2(CDC* pDC)
 
 void Cgdi2018View::DrawFork(CDC* pDC)
 {
-	Rotate(pDC, ugao2 * TO_RAD);
-	Translate(pDC, 273 - 36, 40 - 40);
-
+	Translate(pDC, 14, 20);
 	Rotate(pDC, ugao3 * TO_RAD);
 	Translate(pDC, -14, -20);
 	Scale(pDC, 2.5, 2.5);
-	pDC->PlayMetaFile(viljuska, CRect(0, 0, 44, 34));
+
+
+	pDC->PlayMetaFile(viljuska, viljuskaRect);
 }
 
 void Cgdi2018View::DrawExcavator(CDC* pDC)
@@ -266,18 +275,13 @@ void Cgdi2018View::DrawExcavator(CDC* pDC)
 
 	DrawArm1(pDC);
 
-	Translate(pDC, 309, 61);
-
-	XFORM viljuska{};
-	pDC->GetWorldTransform(&viljuska);
-
-	DrawFork(pDC);
-
-	pDC->SetWorldTransform(&viljuska);
-
-	Translate(pDC, -36, -40);
+	Translate(pDC, 309 - 36, 61 - 40);
 
 	DrawArm2(pDC);
+
+	Translate(pDC, 272 - 14, 40 - 20);
+
+	DrawFork(pDC);
 	
 }
 
