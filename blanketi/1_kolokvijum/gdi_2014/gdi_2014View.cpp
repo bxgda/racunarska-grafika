@@ -1,6 +1,6 @@
 
 // gdi_2014View.cpp : implementation of the Cgdi2014View class
-//
+///
 
 #include "pch.h"
 #include "framework.h"
@@ -324,3 +324,4 @@ BOOL Cgdi2014View::OnEraseBkgnd(CDC* pDC)
 
 	return TRUE;
 }
+
