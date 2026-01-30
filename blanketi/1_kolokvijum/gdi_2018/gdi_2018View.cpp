@@ -237,8 +237,6 @@ void Cgdi2018View::DrawArm1(CDC* pDC)
 
 void Cgdi2018View::DrawArm2(CDC* pDC)
 {
-	Translate(pDC, 270, 20);
-
 	Translate(pDC, 36, 40);
 	Rotate(pDC, ugao2 * TO_RAD);
 	Translate(pDC, -36, -40);
@@ -248,14 +246,12 @@ void Cgdi2018View::DrawArm2(CDC* pDC)
 
 void Cgdi2018View::DrawFork(CDC* pDC)
 {
-	Translate(pDC, arm2->Width() - 40, 10);
+	Rotate(pDC, ugao2 * TO_RAD);
+	Translate(pDC, 273 - 36, 40 - 40);
 
-	Translate(pDC, 14, 30);
 	Rotate(pDC, ugao3 * TO_RAD);
-	Translate(pDC, -14, -30);
-
+	Translate(pDC, -14, -20);
 	Scale(pDC, 2.5, 2.5);
-
 	pDC->PlayMetaFile(viljuska, CRect(0, 0, 44, 34));
 }
 
@@ -267,55 +263,71 @@ void Cgdi2018View::DrawExcavator(CDC* pDC)
 	Translate(pDC, prozor.Width() - bager->Width(), prozor.Height() - bager->Height());
 
 	DrawBody(pDC);
+
 	DrawArm1(pDC);
-	DrawArm2(pDC);
+
+	Translate(pDC, 309, 61);
+
+	XFORM viljuska{};
+	pDC->GetWorldTransform(&viljuska);
+
 	DrawFork(pDC);
+
+	pDC->SetWorldTransform(&viljuska);
+
+	Translate(pDC, -36, -40);
+
+	DrawArm2(pDC);
+	
 }
 
 // Cgdi2018View message handlers
 
 void Cgdi2018View::OnKeyDown(UINT nChar, UINT nRepCnt, UINT nFlags)
 {
+	int ugao = 10;
+	int put = 5;
+
 	if (nChar == '1')
 	{
 		if (ugao1 > -180)
-			ugao1 -= 10;
+			ugao1 -= ugao;
 	}
 	else if (nChar == '2')
 	{
 		if (ugao1 < -90)
-			ugao1 += 10;
+			ugao1 += ugao;
 	}
 	else if (nChar == '3')
 	{
 		if (ugao2 > -170)
-			ugao2 -= 10;
+			ugao2 -= ugao;
 	}
 	else if (nChar == '4')
 	{
 		if (ugao2 < -90)
-			ugao2 += 10;
+			ugao2 += ugao;
 	}
 	else if (nChar == '5')
 	{
 		if (ugao3 > -90)
-			ugao3 -= 10;
+			ugao3 -= ugao;
 	}
 	else if (nChar == '6')
 	{
 		if (ugao3 < 0)
-			ugao3 += 10;
+			ugao3 += ugao;
 	}
 	else if (nChar == VK_LEFT)
 	{
-		predjeniPut += 5;
+		predjeniPut += put;
 	}
 	else if (nChar == VK_RIGHT)
 	{
-		predjeniPut -= 5;
+		predjeniPut -= put;
 	}
-
 	Invalidate();
+
 	CView::OnKeyDown(nChar, nRepCnt, nFlags);
 }
 
