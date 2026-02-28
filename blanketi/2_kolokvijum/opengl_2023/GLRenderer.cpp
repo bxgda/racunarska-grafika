@@ -284,7 +284,7 @@ void CGLRenderer::DrawCylinder(double r1, double r2, double h, int nSeg, int tex
 	{
 		// donja baza
 		glBegin(GL_TRIANGLE_FAN);
-		glTexCoord2f(0.5f, 0.25f); // centar donjeg dela teksture
+		glTexCoord2f(0.5f, 0.25f); // centar gornjeg dela teksture
 		glVertex3d(0, 0, 0);
 		for (int i =0; i<= nSeg; i++)
 		{
@@ -381,3 +381,4 @@ void CGLRenderer::UpdateCamera()
 	glRotatef(cameraBeta * TO_DEG, 1, 0, 0);
 	glRotatef(cameraAlpha * TO_DEG, 0, 1, 0);
 }
+
