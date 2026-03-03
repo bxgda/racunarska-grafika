@@ -1,6 +1,5 @@
 
 // GLKView.cpp : implementation of the CGLKView class
-//
 
 #include "stdafx.h"
 // SHARED_HANDLERS can be defined in an ATL project implementing preview, thumbnail
@@ -232,3 +231,4 @@ void CGLKView::OnKeyDown(UINT nChar, UINT nRepCnt, UINT nFlags)
 
 	CView::OnKeyDown(nChar, nRepCnt, nFlags);
 }
+
